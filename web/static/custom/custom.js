@@ -1511,6 +1511,9 @@ function display_whois_on_modal(response, show_add_target_btn=false) {
 				<a class="nav-link mb-1" id="v-pills-whois-tab" data-bs-toggle="pill" href="#v-pills-whois" role="tab" aria-controls="v-pills-whois" aria-selected="false">Whois</a>
 				<a class="nav-link mb-1" id="v-pills-nameserver-tab" data-bs-toggle="pill" href="#v-pills-nameserver" role="tab" aria-controls="v-pills-nameserver" aria-selected="false">Nameservers</a>
 				<a class="nav-link mb-1" id="v-pills-history-tab" data-bs-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">NS History</a>
+				<a class="nav-link mb-1" id="v-pills-related-tab" data-bs-toggle="pill" href="#v-pills-related" role="tab" aria-controls="v-pills-related" aria-selected="false">
+					Related Domains <span class="badge badge-soft-primary float-end">${response.associated_domains.length}</span>
+				</a>
 			</div>
 		</div> <!-- end col-->
 		<div class="col-sm-9">
@@ -1655,6 +1658,18 @@ function display_whois_on_modal(response, show_add_target_btn=false) {
 				</div>
 				<div class="tab-pane fade" id="v-pills-whois" role="tabpanel" aria-labelledby="v-pills-whois-tab">
 					<pre data-simplebar style="max-height: 310px; min-height: 310px;">${response.raw_text}</pre>
+				</div>
+				<div class="tab-pane fade" id="v-pills-related" role="tabpanel" aria-labelledby="v-pills-related-tab" data-simplebar style="max-height: 300px; min-height: 300px;">
+				`;
+
+				for (var associated_domain in response.associated_domains) {
+					var domain_obj = response.associated_domains[associated_domain];
+					content += `
+						<span class="badge badge-soft-primary badge-link waves-effect waves-light me-1" data-toggle="tooltip" title="Add ${domain_obj} as target." onclick="add_target('${domain_obj}')">${domain_obj}</span>
+					`;
+				}
+
+				content += `
 				</div>
 				<div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab" data-simplebar style="max-height: 300px; min-height: 300px;">
 				</div>

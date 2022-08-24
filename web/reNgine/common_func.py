@@ -901,7 +901,9 @@ def get_whois(ip_domain, save_db=False, fetch_from_db=True):
                 'email': re.search(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", tech_email).group() if re.search(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", tech_email) else None,
             },
             'nameservers': name_servers,
-            'raw_text': result.query_output.strip()
+            'raw_text': result.query_output.strip(),
+            'associated_domains': ['yogeshojha.com', 'helloworld', 'helloworld', 'helloworld'],
+            'related_tlds': None,
         }
 
     elif ip_domain and fetch_from_db:
@@ -969,7 +971,8 @@ def get_whois(ip_domain, save_db=False, fetch_from_db=True):
                 'email': DomainEmailSerializer(domain.domain_info.tech_email).data['name'],
             },
             'nameservers': [ns['name'] for ns in NameServersSerializer(domain.domain_info.name_servers, many=True).data],
-            'raw_text': domain.domain_info.raw_text
+            'raw_text': domain.domain_info.raw_text,
+            'associated_domains': ['yogeshojha.com', 'helloworld', 'helloworld', 'helloworld'],
         }
 
 
