@@ -1,5 +1,5 @@
 # Base image
-FROM --platform=linux/arm64 ubuntu:20.04
+FROM --platform=linux/arm64 ubuntu:22.04
 
 # Labels and Credits
 LABEL \
@@ -20,7 +20,7 @@ ENV PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 RUN apt update -y && \
     apt update -y && \
     apt install -y \
-    python3.8 \
+    python3.10 \
     python3-dev \
     python3-pip
 
@@ -74,7 +74,7 @@ RUN go install -v github.com/tomnomnom/unfurl@latest
 RUN go install -v github.com/tomnomnom/waybackurls@latest
 RUN go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
 RUN go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-RUN go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+RUN go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
 RUN go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
 RUN go install -v github.com/hakluke/hakrawler@latest
 RUN go install -v github.com/lc/gau/v2/cmd/gau@latest
