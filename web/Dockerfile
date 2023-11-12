@@ -1,5 +1,5 @@
 # Base image
-FROM ubuntu:22.04
+FROM --platform=linux/arm64 ubuntu:20.04
 
 # Labels and Credits
 LABEL \
@@ -48,15 +48,15 @@ RUN apt install -y  --no-install-recommends \
 RUN add-apt-repository ppa:mozillateam/ppa
 
 # Download and install go 1.20
-RUN wget https://golang.org/dl/go1.20.linux-amd64.tar.gz
-RUN tar -xvf go1.20.linux-amd64.tar.gz
-RUN rm go1.20.linux-amd64.tar.gz
+RUN wget https://golang.org/dl/go1.20.linux-arm64.tar.gz
+RUN tar -xvf go1.20.linux-arm64.tar.gz
+RUN rm go1.20.linux-arm64.tar.gz
 RUN mv go /usr/local
 
 # Download geckodriver
-RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz
-RUN tar -xvf geckodriver-v0.32.0-linux64.tar.gz
-RUN rm geckodriver-v0.32.0-linux64.tar.gz
+RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux-aarch64.tar.gz
+RUN tar -xvf geckodriver-v0.32.0-linux-aarch64.tar.gz
+RUN rm geckodriver-v0.32.0-linux-aarch64.tar.gz
 RUN mv geckodriver /usr/bin
 
 # Make directory for app
